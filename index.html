@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UBUDDIES | Universidade do Porto</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0F3B82;
+      /* Azul U.Porto */
+      --secondary: #F58634;
+      /* Laranja para destaque */
+      --dark: #1a1a2e;
+      --light: #ffffff;
+      --gray: #f8f9fa;
+      --text: #333333;
+      --light-blue: #E6F3FF;
+      --light-orange: #FFF1E6;
+      --border-color: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Header & Navegação */
+    header {
+      background-color: rgba(255, 255, 255, 0.95);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(45deg, var(--primary), #1B5DB9);
+      color: var(--light);
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(15, 59, 130, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(15, 59, 130, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(45deg, var(--secondary), #FF9F5B);
+      box-shadow: 0 4px 15px rgba(245, 134, 52, 0.3);
+    }
+
+    .btn-secondary:hover {
+      box-shadow: 0 8px 25px rgba(245, 134, 52, 0.4);
+    }
+
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* Seção Hero */
+    .hero {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.7)), url('universidade-do-porto.jpg') center/cover no-repeat;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-content {
+      width: 50%;
+      animation: fadeInLeft 1s ease;
+      padding-top: 80px;
+      margin-left: 4cm;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+    .hero-image {
+        width: 45%; /* Ajuste a largura conforme necessário */
+        height: auto; /* Mantém a proporção */
+        border-radius: 10px; /* Bordas arredondadas para um visual mais moderno */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para destacar a imagem */
+        animation: float 6s ease-in-out infinite; 
+        position: relative;
+        left: -70px;
+        
+        /* Adiciona um efeito de "flutuação" */
+    }
+
+    .hero-shape {
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    /* Seção Chatbot */
+    .section {
+      padding: 100px 0;
+    }
+
+    .chatbot {
+      background-color: var(--gray);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      color: var(--primary);
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .chatbot-container {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 500px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .chatbot-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .chatbot-header h3 {
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+
+    .chatbot-header p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      padding: 15px 20px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: #fdfdfd;
+    }
+
+    .quick-actions h4 {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 10px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .quick-action-button {
+      background-color: #f0f0f0;
+      color: var(--primary);
+      border: 1px solid var(--border-color);
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85em;
+      transition: all 0.2s ease;
+    }
+
+    .quick-action-button:hover {
+      background-color: var(--secondary);
+      color: white;
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Chat Window */
+    .chat-window {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: var(--gray);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .message {
+      display: flex;
+      max-width: 85%;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .message p {
+      padding: 10px 15px;
+      border-radius: 18px;
+      word-wrap: break-word;
+      flex-grow: 1;
+    }
+
+    .bot-message {
+      align-self: flex-start;
+    }
+
+    .bot-message p {
+      background-color: var(--light-blue);
+      color: var(--primary);
+      border-bottom-left-radius: 5px;
+    }
+
+    .user-message {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .user-message p {
+      background-color: var(--light-orange);
+      color: var(--secondary);
+      border-bottom-right-radius: 5px;
+    }
+
+    .chat-form {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid var(--border-color);
+      background-color: #f9f9f9;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-input {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 25px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      background-color: white;
+      transition: border-color 0.2s ease;
+    }
+
+    .user-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(15, 59, 130, 0.2);
+    }
+
+    .send-button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      flex-shrink: 0;
+    }
+
+    .send-button:hover {
+      background-color: #0A2E69;
+    }
+
+    .send-button:active {
+      transform: scale(0.95);
+    }
+
+    /* Seção Comunidades */
+    .communities {
+      background-color: white;
+    }
+
+    .communities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .community-card {
+      background-color: var(--gray);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .community-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .community-img {
+      height: 160px;
+      background-color: #ddd;
+      background-image: url('/api/placeholder/400/250');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .community-content {
+      padding: 25px;
+    }
+
+    .community-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .community-card p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    .community-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .community-stats span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .footer-logo span {
+      color: var(--secondary);
+    }
+
+    .footer-about p {
+      margin-bottom: 20px;
+      color: #bbb;
+    }
+
+    .social-links {
+      display: flex;
+    }
+
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      margin-right: 10px;
+      transition: all 0.3s;
+    }
+
+    .social-links a:hover {
+      background-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .footer-links h3,
+    .footer-newsletter h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-links h3::after,
+    .footer-newsletter h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--secondary);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+
+    .footer-newsletter p {
+      color: #bbb;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form {
+      display: flex;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 30px 0 0 30px;
+      font-size: 0.9rem;
+    }
+
+    .newsletter-form button {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 40px;
+      padding-top: 20px;
+      text-align: center;
+      color: #bbb;
+      font-size: 0.9rem;
+    }
+
+    /* Animações */
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* Media Queries para Responsividade */
+    @media (max-width: 992px) {
+      .hero-content {
+        width: 60%;
+      }
+
+      .communities-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 0.9rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        background-color: white;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        flex-direction: column;
+        align-items: center;
+        transition: height 0.3s ease;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        height: auto;
+        /* Ajuste automático da altura */
+        padding: 20px 0;
+      }
+
+      .nav-links li {
+        margin: 15px 0;
+      }
+
+      .hero-content {
+        width: 300%; /* Ocupa toda a largura disponível */
+        max-width: 600px; /* Define um limite máximo para o texto */
+        margin-left: 20px; /* Adiciona uma margem à esquerda para evitar colar na borda */
+        animation: fadeInLeft 1s ease;
+        padding-top: 80px;
+        }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero-image {
+        display: none;
+      }
+
+      .communities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .chatbot-container {
+        height: 400px;
+      }
+    }
+
+    .typing-indicator {
+        font-style: italic;
+        color: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header & Navegação -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">U<span>BUDDIES</span></a>
+        <div class="menu-toggle">☰</div>
+        <ul class="nav-links">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#chatbot">Assistente</a></li>
+          <li><a href="#comunidades">Comunidades</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#" class="btn">Entrar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Seção Hero -->
+  <section class="hero" id="inicio">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Bem-vindo à <span style="color: var(--secondary);">Universidade do Porto</span></h1>
+            <p>UBUDDIES é a sua plataforma de conexão, orientação e apoio durante toda a sua jornada acadêmica.</p>
+            <a href="#chatbot" class="btn">Precisa de ajuda?</a>
+            <a href="#comunidades" class="btn btn-secondary" style="margin-left: 15px;">Explorar comunidades</a>
+        </div>
+    </div>
+    <img src="universidade-do-porto.jpg" alt="Universidade do Porto" class="hero-image">
+</section>
+    </div>
+    <!-- Replace placeholder image with univers
+
+  <!-- Seção Chatbot -->
+  <section class="section chatbot" id="chatbot">
+    <div class="container">
+      <div class="section-header">
+        <h2>Talk with UrBuddy</h2>
+        <p>Tire suas dúvidas sobre a Universidade do Porto, serviços acadêmicos, localização ou qualquer outra
+          informação que precise.</p>
+      </div>
+      <div class="chatbot-container">
+        <div class="chatbot-header">
+          <h3>UrBuddy✨</h3>
+          <p>O seu guia na Universidade do Porto!</p>
+        </div>
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+          <h4>Perguntas frequentes:</h4>
+          <div class="action-buttons">
+            <button class="quick-action-button" data-query="Onde ficam as cantinas?">🍽️ Cantinas</button>
+            <button class="quick-action-button" data-query="Como funciona o alojamento?">🏠 Alojamento</button>
+            <button class="quick-action-button" data-query="Onde posso estudar?">📚 Bibliotecas</button>
+            <button class="quick-action-button" data-query="Como posso ir para a Fcup?">🚌 Transportes</button>
+            <button class="quick-action-button" data-query="Como aceder ao WiFi?">📶 Wi-Fi (Eduroam)</button>
+          </div>
+        </div>
+        <!-- Chat Window -->
+        <div class="chat-window" id="chat-window">
+          <div class="message bot-message">
+            <p>👋 Olá! Sou o assistente UrBuddy Como posso ajudar com informações sobre a Universidade do Porto?</p>
+          </div>
+        </div>
+        <!-- Chat Form -->
+        <div class="chat-form" id="chat-form">
+          <input type="text" class="user-input" id="user-input" placeholder="Digite sua pergunta..." autocomplete="off">
+          <button class="send-button" id="send-button" title="Enviar Mensagem">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+  </section>
+
+  <!-- Seção Comunidades -->
+  <section class="section communities" id="comunidades">
+    <div class="container">
+      <div class="section-header">
+        <h2>Descubra Nossas Comunidades</h2>
+        <p>Conecte-se com estudantes que compartilham interesses ou origens similares. Encontre seu grupo e faça parte da
+          comunidade U.Porto.</p>
+      </div>
+      <div class="communities-grid">
+        <div class="community-card">
+          <div class="community-img" style="background-image: url('transferir.jpg');"></div>
+          <div class="community-content">
+            <h3>Estudantes Madeirenses na U.Porto</h3>
+            <p>Grupo dedicado aos estudantes da Ilha da Madeira, oferecendo suporte, eventos e networking.</p>
+            <div class="community-stats">
+              <span>👥 87 membros</span>
+              <span>📝 23 tópicos</span>
+            </div>
+            <a href="#" class="btn">Participar</a>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background-image: url('informatica.jpg');"></div>
+          <div class="community-content">
+            <h3>Estudantes de Engenharia Informática</h3>
+            <p>Espaço para discussões técnicas, projetos colaborativos e oportunidades profissionais.</p>
+            <div class="community-stats">
+              <span>👥 215 membros</span>
+              <span>📝 78 tópicos</span>
+            </div>
+            <a href="#" class="btn">Participar</a>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background-image: url('internacional.jpg');"></div>
+          <div class="community-content">
+            <h3>Estudantes Internacionais</h3>
+            <p>Comunidade para integração de estudantes de todo o mundo na vida universitária do Porto.</p>
+            <div class="community-stats">
+              <span>👥 164 membros</span>
+              <span>📝 52 tópicos</span>
+            </div>
+            <a href="#" class="btn">Participar</a>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background-image: url('voluntariado.png');"></div>
+          <div class="community-content">
+            <h3>Voluntariado U.Porto</h3>
+            <p>Grupo para coordenar e promover iniciativas de voluntariado e responsabilidade social.</p>
+            <div class="community-stats">
+              <span>👥 93 membros</span>
+              <span>📝 31 tópicos</span>
+            </div>
+            <a href="#" class="btn">Participar</a>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background-image: url('arte.jpg');"></div>
+          <div class="community-content">
+            <h3>Cultura e Arte no Porto</h3>
+            <p>Comunidade para amantes de arte, música, literatura e eventos culturais na cidade.</p>
+            <div class="community-stats">
+              <span>👥 127 membros</span>
+              <span>📝 45 tópicos</span>
+            </div>
+            <a href="#" class="btn">Participar</a>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background-image: url('desporto.jpeg');"></div>
+          <div class="community-content">
+            <h3>Desporto Universitário</h3>
+            <p>Grupo para praticantes e entusiastas das várias modalidades desportivas na universidade.</p>
+            <div class="community-stats">
+              <span>👥 156 membros</span>
+              <span>📝 38 tópicos</span>
+            </div>
+            <a href="#" class="btn">Participar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-about">
+                        <a href="#" class="footer-logo">U<span>BUDDIES</span></a>
+                        <p>Uma plataforma dedicada a criar comunidades e facilitar a jornada acadêmica dos estudantes da Universidade do Porto.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Twitter">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                                </svg>
+                            </a>
+                            <a href="#" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Links Úteis</h3>
+                        <ul>
+                            <li><a href="#">Serviços Acadêmicos</a></li>
+                            <li><a href="#">Apoio ao Estudante</a></li>
+                            <li><a href="#">Comunidades</a></li>
+                            <li><a href="#">Contato</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Instituições</h3>
+                        <ul>
+                            <li><a href="#">Universidade do Porto</a></li>
+                            <li><a href="#">Faculdade de Engenharia</a></li>
+                            <li><a href="#">Associação de Estudantes</a></li>
+                            <li><a href="#">SASUP</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h3>Newsletter</h3>
+                        <p>Receba novidades, dicas e informações importantes diretamente no seu email.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Seu email">
+                            <button type="submit">Inscrever</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    © 2025 UBUDDIES. Todos os direitos reservados.
+                </div>
+            </div>
+        </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>

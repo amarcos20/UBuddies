@@ -1,0 +1,493 @@
+/* style.css */
+
+/* Importações e Reset (Manter do anterior) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Variáveis de Cor (Manter e adaptar) */
+:root {
+  --primary-blue: #005EB8;
+  --secondary-orange: #FF8C00;
+  --user-message-bg: #E1FCEF;
+  --user-message-text: #006400;
+  --bot-message-bg: #E6F3FF;
+  --bot-message-text: #004C8C;
+  --background-color: #f4f7f6;
+  --container-bg: #ffffff;
+  --text-color: #333333;
+  --light-text-color: #666666;
+  --border-color: #e0e0e0;
+  --input-bg: #ffffff;
+  --button-text: #ffffff;
+}
+
+/* Estilos Globais (Adaptados) */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  /* Remove margem padrão */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+.container {
+  width: 100%;
+  max-width: 900px; /* Aumenta largura */
+  margin: 0 auto;
+  /* Centraliza */
+  padding: 20px;
+  background-color: var(--container-bg);
+  transition: background-color 0.3s ease;
+}
+
+/* Header */
+header {
+  background-color: var(--primary-blue);
+  color: var(--button-text);
+  padding: 20px 0;
+  /* Reduz padding vertical */
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo a {
+  color: var(--button-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+header .logo a:hover {
+  color: var(--secondary-orange);
+}
+
+header h1 {
+  font-weight: 600;
+  font-size: 2.2em;
+  margin: 0;
+  transition: font-size 0.3s ease;
+}
+
+/* Menu */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 25px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+nav a {
+  color: var(--button-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+nav a::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary-orange);
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--secondary-orange);
+  transform: translateY(-2px);
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+/* Menu Toggle (Hamburguer) */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: var(--button-text);
+  cursor: pointer;
+  display: none; /* Esconde por padrão */
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+  transform: rotate(90deg);
+}
+
+/* Main */
+main {
+  flex-grow: 1;
+  /* Ocupa o espaço restante */
+  position: relative;
+}
+
+.section {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--border-color);
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section h2 {
+  font-size: 2.4em;
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--primary-blue);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos específicos para a seção UrBuddy (Manter e adaptar) */
+#urbuddy {
+  background-color: var(--background-color);
+}
+
+#urbuddy .container {
+  max-width: 800px;
+  /* Limita largura do chat */
+}
+
+/* Estilos para a seção Criadores */
+.creator {
+  margin-bottom: 30px;
+  padding: 25px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.creator:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.creator h3 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries (Adaptar) */
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header h1 {
+    margin-bottom: 15px;
+    font-size: 2em;
+  }
+
+  nav {
+    width: 100%;
+    text-align: left;
+  }
+
+  nav ul {
+    display: none; /* Esconde o menu */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background-color: rgba(0, 94, 184, 0.9);
+    border-radius: 10px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  nav ul.active {
+    display: flex; /* Mostra o menu */
+  }
+
+  nav a {
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: block;
+  }
+
+  nav a:hover {
+    transform: none;
+    background-color: rgba(255, 140, 0, 0.2);
+  }
+
+  nav a::before {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block; /* Mostra o botão */
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .section h2 {
+    font-size: 2em;
+  }
+}
+
+/* Estilos do Chatbot (Importante: Manter e ajustar conforme necessário) */
+#quick-actions {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+#quick-actions h3 {
+  font-size: 1.1em;
+  color: var(--light-text-color);
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.quick-action-button {
+  background-color: #f0f0f0;
+  color: var(--primary-blue);
+  border: 1px solid var(--border-color);
+  padding: 10px 16px;
+  border-radius: 25px;
+  /* Bordas arredondadas */
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quick-action-button:hover {
+  background-color: var(--secondary-orange);
+  color: var(--button-text);
+  border-color: var(--secondary-orange);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Área Principal do Chat */
+#chat-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  /* Ocupa espaço disponível */
+  height: 500px;
+  /* Altura fixa para demonstração, pode ajustar */
+  min-height: 300px;
+  /* Altura mínima */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#chat-window {
+  flex-grow: 1;
+  padding: 25px;
+  overflow-y: auto;
+  /* Scroll vertical */
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* Espaço entre mensagens */
+}
+
+/* Mensagens */
+.message {
+  display: flex;
+  max-width: 85%;
+  align-items: flex-start;
+  /* Alinha ícone e texto */
+  gap: 10px;
+  /* Espaço entre ícone e balão */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInMessage 0.4s ease forwards;
+}
+
+.message:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInMessage {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message p {
+  padding: 14px 20px;
+  border-radius: 24px;
+  word-wrap: break-word;
+  flex-grow: 1;
+  font-size: 1.05em;
+}
+
+/* Mensagens do Bot */
+.bot-message {
+  align-self: flex-start;
+}
+
+.bot-message p {
+  background-color: var(--bot-message-bg);
+  color: var(--bot-message-text);
+  border-bottom-left-radius: 8px;
+  /* Estilo balão */
+}
+
+/* Mensagens do Utilizador */
+.user-message {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+  /* Inverte ordem para ícone à direita */
+}
+
+.user-message p {
+  background-color: var(--user-message-bg);
+  color: var(--user-message-text);
+  border-bottom-right-radius: 8px;
+  /* Estilo balão */
+}
+
+/* Estilo para o indicador "a escrever" */
+.message.typing-indicator p {
+  color: var(--light-text-color);
+  font-style: italic;
+  background-color: transparent !important;
+  /* Sem fundo */
+}
+
+/* Links dentro das mensagens */
+.message a {
+  color: var(--secondary-orange);
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.message a:hover {
+  color: darkorange;
+}
+
+
+/* Formulário de Input */
+#chat-form {
+  display: flex;
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+  background-color: #f9f9f9;
+  /* Ligeiramente diferente do chat */
+  align-items: center;
+  /* Alinha input e botão verticalmente */
+  gap: 15px;
+}
+
+#user-input {
+  flex-grow: 1;
+  padding: 14px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  /* Input arredondado */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  background-color: var(--input-bg);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#user-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(0, 94, 184, 0.2);
+}
+
+#send-button {
+  background-color: var(--primary-blue);
+  color: var(--button-text);
+  border: none;
+  border-radius: 50%;
+  /* Botão redondo */
+  width: 54px;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  /* Impede que encolha */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#send-button:hover {
+  background-color: #004C8C;
+  /* Azul mais escuro no hover */
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#send-button:active {
+  transform: scale(0.95);
+}
+
+#send-button:disabled {
+  background-color: #a0c7e8;
+  /* Azul claro quando desativado */
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#send-button svg {
+  margin-left: 2px;
+  /* Pequeno ajuste para centrar o ícone */
+}
